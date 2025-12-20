@@ -30,85 +30,109 @@
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 40px;
+            padding: 30px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 20px;
+            margin: 10px;
         }
         
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         
         .logo {
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: #3b82f6;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            margin-bottom: 8px;
             background: linear-gradient(90deg, #3b82f6, #8b5cf6);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            line-height: 1.2;
         }
         
         .tagline {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #94a3b8;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         
         .description {
             background: rgba(30, 41, 59, 0.5);
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border-left: 4px solid #3b82f6;
         }
         
         .description h2 {
             color: #3b82f6;
-            margin-bottom: 15px;
-            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-size: 1.5rem;
         }
         
         .description p {
             line-height: 1.6;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: #cbd5e1;
+            font-size: 0.95rem;
         }
         
         .description ul {
             margin-left: 20px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .description li {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #cbd5e1;
+            font-size: 0.95rem;
         }
         
-        .claim-form {
+        .claim-section {
             background: rgba(30, 41, 59, 0.5);
-            padding: 30px;
+            padding: 25px;
             border-radius: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-container {
+            transition: opacity 0.3s ease;
+        }
+        
+        .form-container.hidden {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+        }
+        
+        .claim-section h2 {
+            color: #3b82f6;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
         }
         
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 600;
             color: #3b82f6;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
         .input-with-icon {
@@ -121,17 +145,17 @@
             top: 50%;
             transform: translateY(-50%);
             color: #3b82f6;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
         input {
             width: 100%;
-            padding: 16px 16px 16px 50px;
+            padding: 14px 14px 14px 45px;
             border-radius: 10px;
             border: 2px solid rgba(59, 130, 246, 0.3);
             background: rgba(15, 23, 42, 0.7);
             color: white;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s;
         }
         
@@ -150,11 +174,11 @@
         }
         
         .validation-message {
-            margin-top: 8px;
-            font-size: 0.9rem;
+            margin-top: 6px;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         
         .validation-message.valid {
@@ -167,19 +191,19 @@
         
         #claimButton {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: linear-gradient(90deg, #3b82f6, #8b5cf6);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             margin-top: 10px;
         }
         
@@ -202,15 +226,16 @@
         .info-box {
             background: rgba(59, 130, 246, 0.1);
             border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
+            padding: 18px;
+            margin-top: 25px;
             text-align: center;
             border: 1px solid rgba(59, 130, 246, 0.3);
         }
         
         .info-box h3 {
             color: #3b82f6;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
         
         .address-example {
@@ -218,67 +243,46 @@
             background: rgba(15, 23, 42, 0.8);
             padding: 8px 15px;
             border-radius: 8px;
-            margin: 10px 0;
-            font-family: monospace;
+            margin: 8px 0;
+            font-family: 'Courier New', monospace;
             color: #10b981;
             word-break: break-all;
             max-width: 100%;
+            font-size: 0.9rem;
         }
         
-        .success-message {
+        .processing-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
             text-align: center;
-            padding: 30px;
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 15px;
-            margin-top: 20px;
-            display: none;
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
         }
         
-        .success-message i {
-            font-size: 4rem;
-            color: #10b981;
-            margin-bottom: 20px;
-        }
-        
-        .success-message h2 {
-            color: #10b981;
-            margin-bottom: 15px;
-        }
-        
-        .already-claimed-message {
-            text-align: center;
-            padding: 30px;
-            background: rgba(245, 158, 11, 0.1);
-            border-radius: 15px;
-            margin-top: 20px;
-            display: none;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-        
-        .already-claimed-message i {
-            font-size: 4rem;
-            color: #f59e0b;
-            margin-bottom: 20px;
-        }
-        
-        .already-claimed-message h2 {
-            color: #f59e0b;
-            margin-bottom: 15px;
+        .processing-container.active {
+            opacity: 1;
+            pointer-events: all;
         }
         
         .processing-message {
-            text-align: center;
-            padding: 30px;
             background: rgba(59, 130, 246, 0.1);
             border-radius: 15px;
-            margin-top: 20px;
-            display: none;
+            padding: 30px;
+            width: 100%;
             border: 1px solid rgba(59, 130, 246, 0.3);
         }
         
         .processing-message i {
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: #3b82f6;
             margin-bottom: 20px;
             animation: spin 2s linear infinite;
@@ -289,36 +293,187 @@
             100% { transform: rotate(360deg); }
         }
         
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #64748b;
-            font-size: 0.9rem;
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 15px;
+            padding: 30px;
             width: 100%;
-            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            display: none;
         }
         
+        .success-message.active {
+            display: block;
+        }
+        
+        .success-message i {
+            font-size: 3.5rem;
+            color: #10b981;
+            margin-bottom: 20px;
+        }
+        
+        .success-message h2 {
+            color: #10b981;
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+        
+        .already-claimed-message {
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            display: none;
+        }
+        
+        .already-claimed-message.active {
+            display: block;
+        }
+        
+        .already-claimed-message i {
+            font-size: 3.5rem;
+            color: #f59e0b;
+            margin-bottom: 20px;
+        }
+        
+        .already-claimed-message h2 {
+            color: #f59e0b;
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #64748b;
+            font-size: 0.85rem;
+            width: 100%;
+            padding: 15px;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 25px;
-                margin: 10px;
+            body {
+                padding: 10px;
             }
             
-            h1 {
-                font-size: 2.2rem;
+            .container {
+                padding: 20px;
+                margin: 5px;
+                border-radius: 15px;
             }
             
             .logo {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
             
-            .claim-form, .description {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .description {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .description h2 {
+                font-size: 1.3rem;
+            }
+            
+            .claim-section {
                 padding: 20px;
+                min-height: 350px;
+            }
+            
+            .claim-section h2 {
+                font-size: 1.4rem;
+            }
+            
+            input {
+                padding: 12px 12px 12px 40px;
+                font-size: 0.95rem;
+            }
+            
+            #claimButton {
+                padding: 14px;
+                font-size: 1.1rem;
+            }
+            
+            .info-box {
+                padding: 15px;
+                margin-top: 20px;
             }
             
             .address-example {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 padding: 6px 12px;
+            }
+            
+            .processing-message, 
+            .success-message, 
+            .already-claimed-message {
+                padding: 25px;
+            }
+            
+            .processing-message i,
+            .success-message i,
+            .already-claimed-message i {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .description {
+                padding: 12px;
+            }
+            
+            .claim-section {
+                padding: 15px;
+                min-height: 320px;
+            }
+            
+            input {
+                font-size: 0.9rem;
+                padding: 10px 10px 10px 35px;
+            }
+            
+            .wallet-icon {
+                font-size: 1rem;
+                left: 12px;
+            }
+            
+            #claimButton {
+                padding: 12px;
+                font-size: 1rem;
+            }
+            
+            .address-example {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 900px;
             }
         }
     </style>
@@ -329,7 +484,7 @@
             <div class="logo">
                 <i class="fas fa-coins"></i>
             </div>
-            <h1>Claim XDD Token</h1>
+            <h1>Claim Dibakar Das (XDD) Tokens</h1>
             <p class="tagline">Secure your XDD tokens with your OmniXEP wallet</p>
         </header>
         
@@ -341,46 +496,53 @@
                 <li>Enter your OmniXEP wallet address in the form below</li>
                 <li>Ensure your address starts with 'x' (OmniXEP format)</li>
                 <li>Click the "Claim Tokens" button to initiate the process</li>
-                <li>Tokens will be automatically sent to your submitted address</li>
+                <li>Tokens will be sent to your submitted address</li>
                 <li>You can only claim once per wallet address</li>
             </ul>
             
             <p><strong>Note:</strong> Please verify your wallet address before submitting. Claims are limited to one per address.</p>
         </section>
         
-        <section class="claim-form">
-            <h2>Claim Your Tokens</h2>
-            <div class="form-group">
-                <label for="walletAddress">OmniXEP Wallet Address</label>
-                <div class="input-with-icon">
-                    <i class="fas fa-wallet wallet-icon"></i>
-                    <input type="text" id="walletAddress" placeholder="xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q">
+        <section class="claim-section">
+            <!-- Form Container -->
+            <div class="form-container" id="formContainer">
+                <h2>Claim Your Tokens</h2>
+                <div class="form-group">
+                    <label for="walletAddress">OmniXEP Wallet Address</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-wallet wallet-icon"></i>
+                        <input type="text" id="walletAddress" placeholder="xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q">
+                    </div>
+                    <div id="validationMessage" class="validation-message">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Enter a valid OmniXEP address starting with 'x'</span>
+                    </div>
                 </div>
-                <div id="validationMessage" class="validation-message">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Enter a valid OmniXEP address starting with 'x'</span>
+                
+                <button id="claimButton" disabled>
+                    <i class="fas fa-gift"></i>
+                    <span>Claim Tokens</span>
+                </button>
+                
+                <div class="info-box">
+                    <h3>Address Format</h3>
+                    <p>Valid OmniXEP addresses always begin with the letter <strong>'x'</strong></p>
+                    <div class="address-example">xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q</div>
+                    <p>Double-check your address to ensure successful token delivery.</p>
                 </div>
             </div>
             
-            <button id="claimButton" disabled>
-                <i class="fas fa-gift"></i>
-                <span>Claim Tokens</span>
-            </button>
-            
-            <div class="info-box">
-                <h3>Address Format</h3>
-                <p>Valid OmniXEP addresses always begin with the letter <strong>'x'</strong></p>
-                <div class="address-example">xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q</div>
-                <p>Double-check your address to ensure successful token delivery.</p>
+            <!-- Processing Animation -->
+            <div class="processing-container" id="processingContainer">
+                <div class="processing-message">
+                    <i class="fas fa-cog"></i>
+                    <h2>Processing Your Claim</h2>
+                    <p>Your tokens are being processed. This may take a few moments...</p>
+                </div>
             </div>
             
-            <div id="processingMessage" class="processing-message">
-                <i class="fas fa-cog"></i>
-                <h2>Processing Your Claim</h2>
-                <p>Your tokens are being processed. This may take a few moments...</p>
-            </div>
-            
-            <div id="successMessage" class="success-message">
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
                 <i class="fas fa-check-circle"></i>
                 <h2>Tokens Claimed Successfully!</h2>
                 <p>Your XDD tokens have been claimed and will be sent to:</p>
@@ -388,7 +550,8 @@
                 <p style="margin-top: 15px;">The tokens will arrive in your wallet shortly. Thank you!</p>
             </div>
             
-            <div id="alreadyClaimedMessage" class="already-claimed-message">
+            <!-- Already Claimed Message -->
+            <div class="already-claimed-message" id="alreadyClaimedMessage">
                 <i class="fas fa-exclamation-circle"></i>
                 <h2>You've Already Claimed Tokens</h2>
                 <p>Our records show that you have already participated in the token claim.</p>
@@ -418,8 +581,9 @@
         const walletInput = document.getElementById('walletAddress');
         const validationMessage = document.getElementById('validationMessage');
         const claimButton = document.getElementById('claimButton');
+        const formContainer = document.getElementById('formContainer');
+        const processingContainer = document.getElementById('processingContainer');
         const successMessage = document.getElementById('successMessage');
-        const processingMessage = document.getElementById('processingMessage');
         const alreadyClaimedMessage = document.getElementById('alreadyClaimedMessage');
         const submittedAddress = document.getElementById('submittedAddress');
         
@@ -431,10 +595,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             checkExistingClaim();
             updateValidationUI();
+            setupEventListeners();
         });
         
         // ================================================
-        // ANTI-DUPLICATE: OPTION 1 - Browser Storage
+        // ANTI-DUPLICATE: Browser Storage
         // ================================================
         
         function checkExistingClaim() {
@@ -448,9 +613,9 @@
             // Check cookies
             const cookieClaim = getCookie(STORAGE_KEYS.CLAIM_STATUS);
             
-            // If any storage method shows a claim, block the form
+            // If any storage method shows a claim, show already claimed message
             if (claimStatus === 'claimed' || sessionClaim === 'claimed' || cookieClaim === 'claimed') {
-                showAlreadyClaimed();
+                showMessage('alreadyClaimed');
                 return true;
             }
             
@@ -475,7 +640,7 @@
         }
         
         // ================================================
-        // ANTI-DUPLICATE: OPTION 2 - Browser Fingerprinting
+        // Browser Fingerprinting
         // ================================================
         
         function generateBrowserFingerprint() {
@@ -547,7 +712,6 @@
             document.cookie = `${name}=${value}; ${expires}; path=/; SameSite=Strict`;
         }
         
-        // FIXED: Updated validation for OmniXEP addresses
         function isValidOmniXEPAddress(address) {
             const trimmedAddress = address.trim();
             
@@ -556,13 +720,12 @@
                 return false;
             }
             
-            // Check length (typically 26-35 chars, but being more flexible)
+            // Check length
             if (trimmedAddress.length < 26 || trimmedAddress.length > 40) {
                 return false;
             }
             
-            // Check if it contains only valid characters (alphanumeric)
-            // Note: Some crypto addresses might have uppercase letters
+            // Check if it contains only valid characters
             if (!/^x[0-9a-zA-Z]+$/.test(trimmedAddress)) {
                 return false;
             }
@@ -608,29 +771,29 @@
             }
         }
         
-        function showAlreadyClaimed() {
-            // Hide form elements
-            document.querySelector('.form-group').style.display = 'none';
-            claimButton.style.display = 'none';
-            document.querySelector('.info-box').style.display = 'none';
+        function showMessage(messageType) {
+            // Hide all messages first
+            formContainer.classList.add('hidden');
+            processingContainer.classList.remove('active');
+            successMessage.classList.remove('active');
+            alreadyClaimedMessage.classList.remove('active');
             
-            // Show already claimed message
-            alreadyClaimedMessage.style.display = 'block';
+            // Show the requested message
+            if (messageType === 'processing') {
+                processingContainer.classList.add('active');
+            } else if (messageType === 'success') {
+                successMessage.classList.add('active');
+            } else if (messageType === 'alreadyClaimed') {
+                alreadyClaimedMessage.classList.add('active');
+            }
         }
         
-        function showProcessing() {
-            successMessage.style.display = 'none';
-            alreadyClaimedMessage.style.display = 'none';
-            processingMessage.style.display = 'block';
-        }
-        
-        function showSuccess(address) {
-            processingMessage.style.display = 'none';
-            submittedAddress.textContent = address;
-            successMessage.style.display = 'block';
-            
-            // Scroll to success message
-            successMessage.scrollIntoView({ behavior: 'smooth' });
+        function showForm() {
+            // Hide all messages and show form
+            processingContainer.classList.remove('active');
+            successMessage.classList.remove('active');
+            alreadyClaimedMessage.classList.remove('active');
+            formContainer.classList.remove('hidden');
         }
         
         // ================================================
@@ -643,8 +806,8 @@
                 return;
             }
             
-            // Show processing state
-            showProcessing();
+            // Show processing animation
+            showMessage('processing');
             
             // Mark as claimed in browser storage
             markAsClaimed(address);
@@ -654,8 +817,12 @@
             
             // Show success after delay
             setTimeout(() => {
-                showSuccess(address);
-                resetForm();
+                submittedAddress.textContent = address;
+                showMessage('success');
+                
+                // Reset form for potential future use
+                walletInput.value = '';
+                walletInput.classList.remove('valid');
             }, 3000);
         }
         
@@ -669,16 +836,16 @@
                 
                 // Add timestamp for tracking
                 const timestamp = new Date().toISOString();
-                formData.append('entry.1234567890', timestamp); // You can add more fields if needed
+                formData.append('entry.1234567890', timestamp);
                 
                 // Add browser fingerprint
                 const fingerprint = localStorage.getItem(STORAGE_KEYS.BROWSER_FINGERPRINT) || generateBrowserFingerprint();
-                formData.append('entry.9876543210', fingerprint); // Additional field if you want
+                formData.append('entry.9876543210', fingerprint);
                 
                 // Submit to Google Form
                 await fetch(GOOGLE_FORM_ACTION, {
                     method: 'POST',
-                    mode: 'no-cors', // Important for Google Forms
+                    mode: 'no-cors',
                     body: formData
                 });
                 
@@ -711,40 +878,55 @@
             }
         }
         
-        function resetForm() {
-            walletInput.value = '';
-            walletInput.classList.remove('valid');
-            updateValidationUI();
-        }
-        
         // ================================================
         // EVENT LISTENERS
         // ================================================
         
-        walletInput.addEventListener('input', function() {
-            updateValidationUI();
+        function setupEventListeners() {
+            walletInput.addEventListener('input', function() {
+                updateValidationUI();
+                
+                // Auto-validate on paste
+                if (this.value.includes('xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q')) {
+                    setTimeout(updateValidationUI, 100);
+                }
+            });
             
-            // Auto-validate on paste
-            if (this.value.includes('xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q')) {
-                // If user pastes the example, validate it
-                setTimeout(updateValidationUI, 100);
-            }
-        });
+            claimButton.addEventListener('click', function() {
+                const address = walletInput.value.trim();
+                if (isValidOmniXEPAddress(address)) {
+                    submitClaim(address);
+                }
+            });
+            
+            walletInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !claimButton.disabled) {
+                    claimButton.click();
+                }
+            });
+        }
         
-        claimButton.addEventListener('click', function() {
-            const address = walletInput.value.trim();
-            if (isValidOmniXEPAddress(address)) {
-                submitClaim(address);
-            }
-        });
+        // ================================================
+        // TEST FUNCTION (for debugging)
+        // ================================================
         
-        walletInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && !claimButton.disabled) {
-                claimButton.click();
-            }
-        });
+        function testAddressValidation() {
+            const testAddresses = [
+                'xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q', // Your example - should be valid
+                'x1234567890123456789012345', // 25 chars - should be invalid
+                'x1234567890123456789012345678901234567890', // 40 chars - should be valid
+                'x12345678901234567890123456789012345678901', // 41 chars - should be invalid
+                'yKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q', // Starts with y - should be invalid
+                '', // Empty - should be invalid
+            ];
+            
+            console.log('Testing address validation:');
+            testAddresses.forEach(addr => {
+                console.log(`${addr}: ${isValidOmniXEPAddress(addr) ? 'VALID' : 'INVALID'}`);
+            });
+        }
         
-        // Test the example address on load
+        // Initial test for example address
         setTimeout(function() {
             // Test with your example address
             walletInput.value = 'xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q';
@@ -757,28 +939,6 @@
             }, 1000);
         }, 500);
         
-        // ================================================
-        // TEST FUNCTION (for debugging)
-        // ================================================
-        
-        function testAddressValidation() {
-            const testAddresses = [
-                'xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q', // Your example - should be valid
-                'x1234567890123456789012345', // 25 chars - should be invalid (too short)
-                'x1234567890123456789012345678901234567890', // 40 chars - should be valid
-                'x12345678901234567890123456789012345678901', // 41 chars - should be invalid (too long)
-                'yKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q', // Starts with y - should be invalid
-                'xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4!', // Contains special char - should be invalid
-                '', // Empty - should be invalid
-            ];
-            
-            console.log('Testing address validation:');
-            testAddresses.forEach(addr => {
-                console.log(`${addr}: ${isValidOmniXEPAddress(addr) ? 'VALID' : 'INVALID'}`);
-            });
-        }
-        
-        // Run test on console (optional)
         console.log('XDD Token Claim Portal loaded');
         console.log('To test validation, run: testAddressValidation()');
         
