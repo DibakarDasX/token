@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim XDD Token</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+        
+        .description {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .description h2 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .description p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #cbd5e1;
+        }
+        
+        .description ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .description li {
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+        
+        .claim-form {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #3b82f6;
+            font-size: 1.2rem;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .wallet-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #3b82f6;
+            font-size: 1.2rem;
+        }
+        
+        input {
+            width: 100%;
+            padding: 16px 16px 16px 50px;
+            border-radius: 10px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            background: rgba(15, 23, 42, 0.7);
+            color: white;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        input.valid {
+            border-color: #10b981;
+        }
+        
+        input.invalid {
+            border-color: #ef4444;
+        }
+        
+        .validation-message {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .validation-message.valid {
+            color: #10b981;
+        }
+        
+        .validation-message.invalid {
+            color: #ef4444;
+        }
+        
+        #claimButton {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        
+        #claimButton:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        #claimButton:active {
+            transform: translateY(-1px);
+        }
+        
+        #claimButton:disabled {
+            background: #475569;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .info-box h3 {
+            color: #3b82f6;
+            margin-bottom: 10px;
+        }
+        
+        .address-example {
+            display: inline-block;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 8px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: monospace;
+            color: #10b981;
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: 30px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        
+        .success-message i {
+            font-size: 4rem;
+            color: #10b981;
+            margin-bottom: 20px;
+        }
+        
+        .success-message h2 {
+            color: #10b981;
+            margin-bottom: 15px;
+        }
+        
+        .already-claimed-message {
+            text-align: center;
+            padding: 30px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        
+        .already-claimed-message i {
+            font-size: 4rem;
+            color: #f59e0b;
+            margin-bottom: 20px;
+        }
+        
+        .already-claimed-message h2 {
+            color: #f59e0b;
+            margin-bottom: 15px;
+        }
+        
+        .processing-message {
+            text-align: center;
+            padding: 30px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .processing-message i {
+            font-size: 4rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #64748b;
+            font-size: 0.9rem;
+            width: 100%;
+            padding: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo {
+                font-size: 2.8rem;
+            }
+            
+            .claim-form, .description {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-coins"></i>
+            </div>
+            <h1>Claim XDD Token</h1>
+            <p class="tagline">Secure your XDD tokens with your OmniXEP wallet</p>
+        </header>
+        
+        <section class="description">
+            <h2>Token Claim Process</h2>
+            <p>Welcome to the XDD token claim portal. Follow these simple steps to claim your tokens:</p>
+            
+            <ul>
+                <li>Enter your OmniXEP wallet address in the form below</li>
+                <li>Ensure your address starts with 'x' (OmniXEP format)</li>
+                <li>Click the "Claim Tokens" button to initiate the process</li>
+                <li>Tokens will be automatically sent to your submitted address</li>
+                <li>You can only claim once per wallet address</li>
+            </ul>
+            
+            <p><strong>Note:</strong> Please verify your wallet address before submitting. Claims are limited to one per address.</p>
+        </section>
+        
+        <section class="claim-form">
+            <h2>Claim Your Tokens</h2>
+            <div class="form-group">
+                <label for="walletAddress">OmniXEP Wallet Address</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-wallet wallet-icon"></i>
+                    <input type="text" id="walletAddress" placeholder="xExampleOmniXEPWalletAddress12345">
+                </div>
+                <div id="validationMessage" class="validation-message">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Enter a valid OmniXEP address starting with 'x'</span>
+                </div>
+            </div>
+            
+            <button id="claimButton" disabled>
+                <i class="fas fa-gift"></i>
+                <span>Claim Tokens</span>
+            </button>
+            
+            <div class="info-box">
+                <h3>Address Format</h3>
+                <p>Valid OmniXEP addresses always begin with the letter <strong>'x'</strong></p>
+                <div class="address-example">xExampleOmniXEPWalletAddress12345</div>
+                <p>Double-check your address to ensure successful token delivery.</p>
+            </div>
+            
+            <div id="processingMessage" class="processing-message">
+                <i class="fas fa-cog"></i>
+                <h2>Processing Your Claim</h2>
+                <p>Your tokens are being processed. This may take a few moments...</p>
+            </div>
+            
+            <div id="successMessage" class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <h2>Tokens Claimed Successfully!</h2>
+                <p>Your XDD tokens have been claimed and will be sent to:</p>
+                <div class="address-example" id="submittedAddress"></div>
+                <p style="margin-top: 15px;">The tokens will arrive in your wallet shortly. Thank you!</p>
+            </div>
+            
+            <div id="alreadyClaimedMessage" class="already-claimed-message">
+                <i class="fas fa-exclamation-circle"></i>
+                <h2>You've Already Claimed Tokens</h2>
+                <p>Our records show that you have already participated in the token claim.</p>
+                <p>Each wallet address can only claim tokens once.</p>
+            </div>
+        </section>
+        
+        <footer>
+            <p>XDD Token Claim Portal | One claim per wallet address</p>
+        </footer>
+    </div>
+
+    <script>
+        // ================================================
+        // ANTI-DUPLICATE CLAIM SYSTEM
+        // ================================================
+        
+        // Storage Keys
+        const STORAGE_KEYS = {
+            CLAIM_STATUS: 'xdd_claim_status',
+            WALLET_ADDRESS: 'xdd_wallet_address',
+            CLAIM_TIMESTAMP: 'xdd_claim_timestamp',
+            BROWSER_FINGERPRINT: 'xdd_browser_fingerprint'
+        };
+        
+        // DOM Elements
+        const walletInput = document.getElementById('walletAddress');
+        const validationMessage = document.getElementById('validationMessage');
+        const claimButton = document.getElementById('claimButton');
+        const successMessage = document.getElementById('successMessage');
+        const processingMessage = document.getElementById('processingMessage');
+        const alreadyClaimedMessage = document.getElementById('alreadyClaimedMessage');
+        const submittedAddress = document.getElementById('submittedAddress');
+        
+        // Google Form Configuration (YOU MUST UPDATE THESE)
+        const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse';
+        const GOOGLE_FORM_ENTRY_ID = 'entry.YOUR_ENTRY_ID';
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            checkExistingClaim();
+            updateValidationUI();
+        });
+        
+        // ================================================
+        // ANTI-DUPLICATE: OPTION 1 - Browser Storage
+        // ================================================
+        
+        function checkExistingClaim() {
+            // Check localStorage
+            const claimStatus = localStorage.getItem(STORAGE_KEYS.CLAIM_STATUS);
+            const storedAddress = localStorage.getItem(STORAGE_KEYS.WALLET_ADDRESS);
+            
+            // Check sessionStorage
+            const sessionClaim = sessionStorage.getItem(STORAGE_KEYS.CLAIM_STATUS);
+            
+            // Check cookies
+            const cookieClaim = getCookie(STORAGE_KEYS.CLAIM_STATUS);
+            
+            // If any storage method shows a claim, block the form
+            if (claimStatus === 'claimed' || sessionClaim === 'claimed' || cookieClaim === 'claimed') {
+                showAlreadyClaimed();
+                return true;
+            }
+            
+            return false;
+        }
+        
+        function markAsClaimed(address) {
+            // Store in localStorage (persists across sessions)
+            localStorage.setItem(STORAGE_KEYS.CLAIM_STATUS, 'claimed');
+            localStorage.setItem(STORAGE_KEYS.WALLET_ADDRESS, address);
+            localStorage.setItem(STORAGE_KEYS.CLAIM_TIMESTAMP, new Date().toISOString());
+            
+            // Store in sessionStorage (current session only)
+            sessionStorage.setItem(STORAGE_KEYS.CLAIM_STATUS, 'claimed');
+            
+            // Store in cookie (persists based on expiry)
+            setCookie(STORAGE_KEYS.CLAIM_STATUS, 'claimed', 365);
+            
+            // Generate and store browser fingerprint
+            const fingerprint = generateBrowserFingerprint();
+            localStorage.setItem(STORAGE_KEYS.BROWSER_FINGERPRINT, fingerprint);
+        }
+        
+        // ================================================
+        // ANTI-DUPLICATE: OPTION 2 - Browser Fingerprinting
+        // ================================================
+        
+        function generateBrowserFingerprint() {
+            const components = [];
+            
+            // User Agent
+            components.push(navigator.userAgent);
+            
+            // Screen properties
+            components.push(screen.width);
+            components.push(screen.height);
+            components.push(screen.colorDepth);
+            
+            // Timezone
+            components.push(new Date().getTimezoneOffset());
+            
+            // Language
+            components.push(navigator.language);
+            
+            // Platform
+            components.push(navigator.platform);
+            
+            // Cookies enabled
+            components.push(navigator.cookieEnabled);
+            
+            // Do Not Track
+            components.push(navigator.doNotTrack);
+            
+            // Hardware concurrency
+            if (navigator.hardwareConcurrency) {
+                components.push(navigator.hardwareConcurrency);
+            }
+            
+            // Device memory
+            if (navigator.deviceMemory) {
+                components.push(navigator.deviceMemory);
+            }
+            
+            // Generate hash from components
+            const fingerprintString = components.join('|');
+            return simpleHash(fingerprintString);
+        }
+        
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return hash.toString(36);
+        }
+        
+        // ================================================
+        // HELPER FUNCTIONS
+        // ================================================
+        
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
+        
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = `expires=${date.toUTCString()}`;
+            document.cookie = `${name}=${value}; ${expires}; path=/; SameSite=Strict`;
+        }
+        
+        function isValidOmniXEPAddress(address) {
+            return address && 
+                   address.trim().startsWith('x') && 
+                   address.trim().length >= 26 && 
+                   address.trim().length <= 35 &&
+                   /^x[a-zA-Z0-9]+$/.test(address.trim());
+        }
+        
+        function updateValidationUI() {
+            const address = walletInput.value.trim();
+            
+            if (address === '') {
+                walletInput.classList.remove('valid', 'invalid');
+                validationMessage.classList.remove('valid', 'invalid');
+                validationMessage.innerHTML = '<i class="fas fa-info-circle"></i><span>Enter a valid OmniXEP address starting with \'x\'</span>';
+                claimButton.disabled = true;
+                return;
+            }
+            
+            if (isValidOmniXEPAddress(address)) {
+                walletInput.classList.remove('invalid');
+                walletInput.classList.add('valid');
+                validationMessage.classList.remove('invalid');
+                validationMessage.classList.add('valid');
+                validationMessage.innerHTML = '<i class="fas fa-check-circle"></i><span>Valid OmniXEP address</span>';
+                claimButton.disabled = false;
+            } else {
+                walletInput.classList.remove('valid');
+                walletInput.classList.add('invalid');
+                validationMessage.classList.remove('valid');
+                validationMessage.classList.add('invalid');
+                validationMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Invalid address. Must start with \'x\' and contain only letters/numbers</span>';
+                claimButton.disabled = true;
+            }
+        }
+        
+        function showAlreadyClaimed() {
+            // Hide form elements
+            document.querySelector('.form-group').style.display = 'none';
+            claimButton.style.display = 'none';
+            document.querySelector('.info-box').style.display = 'none';
+            
+            // Show already claimed message
+            alreadyClaimedMessage.style.display = 'block';
+        }
+        
+        function showProcessing() {
+            successMessage.style.display = 'none';
+            alreadyClaimedMessage.style.display = 'none';
+            processingMessage.style.display = 'block';
+        }
+        
+        function showSuccess(address) {
+            processingMessage.style.display = 'none';
+            submittedAddress.textContent = address;
+            successMessage.style.display = 'block';
+            
+            // Scroll to success message
+            successMessage.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // ================================================
+        // FORM SUBMISSION
+        // ================================================
+        
+        async function submitClaim(address) {
+            // Check if already claimed in this session
+            if (checkExistingClaim()) {
+                return;
+            }
+            
+            // Show processing state
+            showProcessing();
+            
+            // Mark as claimed in browser storage
+            markAsClaimed(address);
+            
+            // Submit to Google Form
+            await submitToGoogleForm(address);
+            
+            // Show success after delay
+            setTimeout(() => {
+                showSuccess(address);
+                resetForm();
+            }, 3000);
+        }
+        
+        async function submitToGoogleForm(address) {
+            try {
+                const formData = new FormData();
+                formData.append(GOOGLE_FORM_ENTRY_ID, address);
+                
+                // Add browser fingerprint to submission
+                const fingerprint = localStorage.getItem(STORAGE_KEYS.BROWSER_FINGERPRINT) || generateBrowserFingerprint();
+                formData.append('entry.YOUR_FINGERPRINT_ENTRY_ID', fingerprint); // Add if you have another form field
+                
+                await fetch(GOOGLE_FORM_ACTION, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                });
+                
+                // Store backup in localStorage array
+                storeBackupSubmission(address, fingerprint);
+                
+            } catch (error) {
+                console.log('Form submission recorded locally');
+                // Even if fetch fails, we record locally
+                const fingerprint = localStorage.getItem(STORAGE_KEYS.BROWSER_FINGERPRINT) || generateBrowserFingerprint();
+                storeBackupSubmission(address, fingerprint);
+            }
+        }
+        
+        function storeBackupSubmission(address, fingerprint) {
+            try {
+                const submissions = JSON.parse(localStorage.getItem('xdd_backup_submissions') || '[]');
+                submissions.push({
+                    address: address,
+                    fingerprint: fingerprint,
+                    timestamp: new Date().toISOString(),
+                    ip: 'recorded' // Placeholder - real IP would need server-side
+                });
+                localStorage.setItem('xdd_backup_submissions', JSON.stringify(submissions));
+            } catch (e) {
+                console.log('Local storage backup failed');
+            }
+        }
+        
+        function resetForm() {
+            walletInput.value = '';
+            walletInput.classList.remove('valid');
+            updateValidationUI();
+        }
+        
+        // ================================================
+        // EVENT LISTENERS
+        // ================================================
+        
+        walletInput.addEventListener('input', updateValidationUI);
+        
+        claimButton.addEventListener('click', () => {
+            const address = walletInput.value.trim();
+            if (isValidOmniXEPAddress(address)) {
+                submitClaim(address);
+            }
+        });
+        
+        walletInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !claimButton.disabled) {
+                claimButton.click();
+            }
+        });
+        
+        // ================================================
+        // SETUP INSTRUCTIONS (Hidden from users)
+        // ================================================
+        
+        console.log(`
+        ================================================
+        SETUP INSTRUCTIONS:
+        
+        1. CREATE GOOGLE FORM:
+           - Go to forms.google.com
+           - Create form with one question: "Wallet Address"
+           - Get form URL (ends with /formResponse)
+           - Replace GOOGLE_FORM_ACTION above
+        
+        2. GET ENTRY ID:
+           - In form editor, view page source
+           - Find name="entry.xxxxxxxxxx" for your question
+           - Replace GOOGLE_FORM_ENTRY_ID above
+        
+        3. TEST THE SYSTEM:
+           - Submit a claim
+           - Try to submit again (should show "already claimed")
+           - Clear browser data to test fresh claim
+        
+        4. TO VIEW SUBMISSIONS:
+           - Check your Google Form responses
+           - Or check localStorage backup: xdd_backup_submissions
+        
+        ================================================
+        `);
+    </script>
+</body>
+</html>
