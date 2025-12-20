@@ -221,6 +221,8 @@
             margin: 10px 0;
             font-family: monospace;
             color: #10b981;
+            word-break: break-all;
+            max-width: 100%;
         }
         
         .success-message {
@@ -313,6 +315,11 @@
             .claim-form, .description {
                 padding: 20px;
             }
+            
+            .address-example {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
         }
     </style>
 </head>
@@ -347,7 +354,7 @@
                 <label for="walletAddress">OmniXEP Wallet Address</label>
                 <div class="input-with-icon">
                     <i class="fas fa-wallet wallet-icon"></i>
-                    <input type="text" id="walletAddress" placeholder="xExampleOmniXEPWalletAddress12345">
+                    <input type="text" id="walletAddress" placeholder="xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q">
                 </div>
                 <div id="validationMessage" class="validation-message">
                     <i class="fas fa-info-circle"></i>
@@ -363,7 +370,7 @@
             <div class="info-box">
                 <h3>Address Format</h3>
                 <p>Valid OmniXEP addresses always begin with the letter <strong>'x'</strong></p>
-                <div class="address-example">xExampleOmniXEPWalletAddress12345</div>
+                <div class="address-example">xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q</div>
                 <p>Double-check your address to ensure successful token delivery.</p>
             </div>
             
@@ -415,8 +422,8 @@
         const processingMessage = document.getElementById('processingMessage');
         const alreadyClaimedMessage = document.getElementById('alreadyClaimedMessage');
         const submittedAddress = document.getElementById('submittedAddress');
-        https://docs.google.com/forms/d/e/1FAIpQLSfkJrQbLRqu40G7mUX7DZlAkoD4oEu78WKvFL2raUX6joMRyg/viewform?usp=pp_url&entry.827078693=xHm1yBiv88gNmfUVNxKSwzEvZW5nZSwjeS
-        // Google Form Configuration (YOU MUST UPDATE THESE)
+        
+        // Google Form Configuration (YOUR VALUES)
         const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSfkJrQbLRqu40G7mUX7DZlAkoD4oEu78WKvFL2raUX6joMRyg/formResponse';
         const GOOGLE_FORM_ENTRY_ID = 'entry.827078693';
         
@@ -540,12 +547,27 @@
             document.cookie = `${name}=${value}; ${expires}; path=/; SameSite=Strict`;
         }
         
+        // FIXED: Updated validation for OmniXEP addresses
         function isValidOmniXEPAddress(address) {
-            return address && 
-                   address.trim().startsWith('x') && 
-                   address.trim().length >= 26 && 
-                   address.trim().length <= 35 &&
-                   /^x[a-zA-Z0-9]+$/.test(address.trim());
+            const trimmedAddress = address.trim();
+            
+            // Must start with 'x'
+            if (!trimmedAddress.startsWith('x')) {
+                return false;
+            }
+            
+            // Check length (typically 26-35 chars, but being more flexible)
+            if (trimmedAddress.length < 26 || trimmedAddress.length > 40) {
+                return false;
+            }
+            
+            // Check if it contains only valid characters (alphanumeric)
+            // Note: Some crypto addresses might have uppercase letters
+            if (!/^x[0-9a-zA-Z]+$/.test(trimmedAddress)) {
+                return false;
+            }
+            
+            return true;
         }
         
         function updateValidationUI() {
@@ -571,7 +593,17 @@
                 walletInput.classList.add('invalid');
                 validationMessage.classList.remove('valid');
                 validationMessage.classList.add('invalid');
-                validationMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Invalid address. Must start with \'x\' and contain only letters/numbers</span>';
+                
+                if (!address.startsWith('x')) {
+                    validationMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Address must start with \'x\'</span>';
+                } else if (address.length < 26) {
+                    validationMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Address is too short</span>';
+                } else if (address.length > 40) {
+                    validationMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Address is too long</span>';
+                } else {
+                    validationMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Invalid characters in address</span>';
+                }
+                
                 claimButton.disabled = true;
             }
         }
@@ -629,21 +661,31 @@
         
         async function submitToGoogleForm(address) {
             try {
+                // Create form data with your Google Form structure
                 const formData = new FormData();
+                
+                // Add the wallet address field
                 formData.append(GOOGLE_FORM_ENTRY_ID, address);
                 
-                // Add browser fingerprint to submission
-                const fingerprint = localStorage.getItem(STORAGE_KEYS.BROWSER_FINGERPRINT) || generateBrowserFingerprint();
-                formData.append('entry.YOUR_FINGERPRINT_ENTRY_ID', fingerprint); // Add if you have another form field
+                // Add timestamp for tracking
+                const timestamp = new Date().toISOString();
+                formData.append('entry.1234567890', timestamp); // You can add more fields if needed
                 
+                // Add browser fingerprint
+                const fingerprint = localStorage.getItem(STORAGE_KEYS.BROWSER_FINGERPRINT) || generateBrowserFingerprint();
+                formData.append('entry.9876543210', fingerprint); // Additional field if you want
+                
+                // Submit to Google Form
                 await fetch(GOOGLE_FORM_ACTION, {
                     method: 'POST',
-                    mode: 'no-cors',
+                    mode: 'no-cors', // Important for Google Forms
                     body: formData
                 });
                 
-                // Store backup in localStorage array
+                // Store backup in localStorage
                 storeBackupSubmission(address, fingerprint);
+                
+                console.log('Form submitted successfully');
                 
             } catch (error) {
                 console.log('Form submission recorded locally');
@@ -660,7 +702,8 @@
                     address: address,
                     fingerprint: fingerprint,
                     timestamp: new Date().toISOString(),
-                    ip: 'recorded' // Placeholder - real IP would need server-side
+                    userAgent: navigator.userAgent,
+                    platform: navigator.platform
                 });
                 localStorage.setItem('xdd_backup_submissions', JSON.stringify(submissions));
             } catch (e) {
@@ -678,51 +721,67 @@
         // EVENT LISTENERS
         // ================================================
         
-        walletInput.addEventListener('input', updateValidationUI);
+        walletInput.addEventListener('input', function() {
+            updateValidationUI();
+            
+            // Auto-validate on paste
+            if (this.value.includes('xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q')) {
+                // If user pastes the example, validate it
+                setTimeout(updateValidationUI, 100);
+            }
+        });
         
-        claimButton.addEventListener('click', () => {
+        claimButton.addEventListener('click', function() {
             const address = walletInput.value.trim();
             if (isValidOmniXEPAddress(address)) {
                 submitClaim(address);
             }
         });
         
-        walletInput.addEventListener('keypress', (e) => {
+        walletInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter' && !claimButton.disabled) {
                 claimButton.click();
             }
         });
         
+        // Test the example address on load
+        setTimeout(function() {
+            // Test with your example address
+            walletInput.value = 'xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q';
+            updateValidationUI();
+            
+            // Clear it after showing it's valid
+            setTimeout(function() {
+                walletInput.value = '';
+                updateValidationUI();
+            }, 1000);
+        }, 500);
+        
         // ================================================
-        // SETUP INSTRUCTIONS (Hidden from users)
+        // TEST FUNCTION (for debugging)
         // ================================================
         
-        console.log(`
-        ================================================
-        SETUP INSTRUCTIONS:
+        function testAddressValidation() {
+            const testAddresses = [
+                'xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q', // Your example - should be valid
+                'x1234567890123456789012345', // 25 chars - should be invalid (too short)
+                'x1234567890123456789012345678901234567890', // 40 chars - should be valid
+                'x12345678901234567890123456789012345678901', // 41 chars - should be invalid (too long)
+                'yKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q', // Starts with y - should be invalid
+                'xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4!', // Contains special char - should be invalid
+                '', // Empty - should be invalid
+            ];
+            
+            console.log('Testing address validation:');
+            testAddresses.forEach(addr => {
+                console.log(`${addr}: ${isValidOmniXEPAddress(addr) ? 'VALID' : 'INVALID'}`);
+            });
+        }
         
-        1. CREATE GOOGLE FORM:
-           - Go to forms.google.com
-           - Create form with one question: "Wallet Address"
-           - Get form URL (ends with /formResponse)
-           - Replace GOOGLE_FORM_ACTION above
+        // Run test on console (optional)
+        console.log('XDD Token Claim Portal loaded');
+        console.log('To test validation, run: testAddressValidation()');
         
-        2. GET ENTRY ID:
-           - In form editor, view page source
-           - Find name="entry.xxxxxxxxxx" for your question
-           - Replace GOOGLE_FORM_ENTRY_ID above
-        
-        3. TEST THE SYSTEM:
-           - Submit a claim
-           - Try to submit again (should show "already claimed")
-           - Clear browser data to test fresh claim
-        
-        4. TO VIEW SUBMISSIONS:
-           - Check your Google Form responses
-           - Or check localStorage backup: xdd_backup_submissions
-        
-        ================================================
-        `);
     </script>
 </body>
 </html>
