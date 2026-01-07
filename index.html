@@ -3,289 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claim XDD Token</title>
+    <title>XDD Token | The Official Dibakar Das Meme Token</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Comic+Neue:wght@700&family=Bangers&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #FF6B9D;
+            --secondary: #00D4FF;
+            --accent: #FFD166;
+            --dark: #0a1a2d;
+            --darker: #05101f;
+            --light: #ffffff;
+            --gray: #88aacc;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 107, 157, 0.3);
+            --gradient: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--light);
+            line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, .logo-text {
+            font-family: 'Comic Neue', cursive;
+            font-weight: 700;
+        }
+        
+        .fun-text {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
         }
         
         .container {
-            max-width: 800px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
+        /* Header Styles */
         header {
-            text-align: center;
-            margin-bottom: 30px;
+            background: rgba(10, 26, 45, 0.95);
+            padding: 20px 0;
+            border-bottom: 3px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
         .logo {
-            font-size: 3rem;
-            color: #3b82f6;
-            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
         }
         
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        .logo-icon {
+            font-size: 2.8rem;
+            color: var(--primary);
+            text-shadow: 2px 2px 0 var(--secondary);
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            line-height: 1.2;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
         }
         
-        .tagline {
-            font-size: 1.1rem;
-            color: #94a3b8;
-            margin-bottom: 20px;
-        }
-        
-        .description {
-            background: rgba(30, 41, 59, 0.5);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            border-left: 4px solid #3b82f6;
-        }
-        
-        .description h2 {
-            color: #3b82f6;
-            margin-bottom: 12px;
-            font-size: 1.5rem;
-        }
-        
-        .description p {
-            line-height: 1.6;
-            margin-bottom: 12px;
-            color: #cbd5e1;
-            font-size: 0.95rem;
-        }
-        
-        .description ul {
-            margin-left: 20px;
-            margin-bottom: 12px;
-        }
-        
-        .description li {
-            margin-bottom: 6px;
-            color: #cbd5e1;
-            font-size: 0.95rem;
-        }
-        
-        .claim-section {
-            background: rgba(30, 41, 59, 0.5);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            position: relative;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-container {
-            transition: opacity 0.3s ease;
-        }
-        
-        .form-container.hidden {
-            opacity: 0;
-            pointer-events: none;
-            position: absolute;
-            width: 100%;
-        }
-        
-        .claim-section h2 {
-            color: #3b82f6;
-            margin-bottom: 20px;
-            font-size: 1.6rem;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #3b82f6;
-            font-size: 1.1rem;
-        }
-        
-        .input-with-icon {
-            position: relative;
-        }
-        
-        .wallet-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #3b82f6;
-            font-size: 1.1rem;
-        }
-        
-        input {
-            width: 100%;
-            padding: 14px 14px 14px 45px;
-            border-radius: 10px;
-            border: 2px solid rgba(59, 130, 246, 0.3);
-            background: rgba(15, 23, 42, 0.7);
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-        
-        input:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
-        
-        input.valid {
-            border-color: #10b981;
-        }
-        
-        input.invalid {
-            border-color: #ef4444;
-        }
-        
-        .validation-message {
-            margin-top: 6px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .validation-message.valid {
-            color: #10b981;
-        }
-        
-        .validation-message.invalid {
-            color: #ef4444;
-        }
-        
-        #claimButton {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        #claimButton:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
-        }
-        
-        #claimButton:active {
-            transform: translateY(-1px);
-        }
-        
-        #claimButton:disabled {
-            background: #475569;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-        
-        .info-box {
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 10px;
-            padding: 18px;
-            margin-top: 25px;
-            text-align: center;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-        
-        .info-box h3 {
-            color: #3b82f6;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-        
-        .address-example {
-            display: inline-block;
-            background: rgba(15, 23, 42, 0.8);
-            padding: 8px 15px;
-            border-radius: 8px;
-            margin: 8px 0;
-            font-family: 'Courier New', monospace;
-            color: #10b981;
-            word-break: break-all;
-            max-width: 100%;
+        .logo-subtitle {
             font-size: 0.9rem;
+            color: var(--accent);
+            margin-top: -5px;
+            font-family: 'Comic Neue', cursive;
         }
         
-        .processing-container {
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 20px;
+            position: relative;
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 107, 157, 0.2);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        nav a:after {
+            content: '✨';
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.3s;
+            right: -15px;
+            top: 0;
+        }
+        
+        nav a:hover:after {
+            opacity: 1;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            flex-direction: column;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 107, 157, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(255, 209, 102, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
             align-items: center;
-            justify-content: center;
-            padding: 25px;
-            text-align: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
         }
         
-        .processing-container.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .processing-message {
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            width: 100%;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-        
-        .processing-message i {
-            font-size: 3.5rem;
-            color: #3b82f6;
+        .hero-text h1 {
+            font-size: 4rem;
             margin-bottom: 20px;
-            animation: spin 2s linear infinite;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--light);
+            font-weight: 500;
+        }
+        
+        .meme-highlight {
+            color: var(--accent);
+            font-weight: 700;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .token-symbol {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 107, 157, 0.2);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            border: 3px solid var(--primary);
+            margin-top: 15px;
+            gap: 15px;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+        
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .meme-visual {
+            width: 350px;
+            height: 350px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: float 6s infinite alternate ease-in-out;
+            box-shadow: 0 20px 50px rgba(255, 107, 157, 0.4);
+            border: 5px solid var(--accent);
+        }
+        
+        .meme-visual:before {
+            content: '😂';
+            position: absolute;
+            font-size: 4rem;
+            top: -30px;
+            right: -30px;
+            animation: spin 10s infinite linear;
+        }
+        
+        .meme-visual:after {
+            content: '🚀';
+            position: absolute;
+            font-size: 3rem;
+            bottom: -25px;
+            left: -25px;
+            animation: bounce 2s infinite alternate;
+        }
+        
+        .meme-visual-inner {
+            width: 280px;
+            height: 280px;
+            background: rgba(10, 26, 45, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border: 5px dashed var(--accent);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            z-index: 2;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 3px;
+        }
+        
+        .meme-visual-inner span {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-top: 10px;
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(2deg); }
         }
         
         @keyframes spin {
@@ -293,655 +288,992 @@
             100% { transform: rotate(360deg); }
         }
         
-        .success-message {
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            display: none;
+        @keyframes bounce {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-15px); }
         }
         
-        .success-message.active {
-            display: block;
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            font-family: 'Comic Neue', cursive;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .success-message i {
-            font-size: 3.5rem;
-            color: #10b981;
-            margin-bottom: 20px;
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
         }
         
-        .success-message h2 {
-            color: #10b981;
-            margin-bottom: 15px;
-            font-size: 1.6rem;
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.5);
         }
         
-        .already-claimed-message {
-            background: rgba(245, 158, 11, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            display: none;
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 3px solid var(--accent);
         }
         
-        .already-claimed-message.active {
-            display: block;
+        .btn-secondary:hover {
+            background: rgba(255, 209, 102, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 209, 102, 0.3);
         }
         
-        .already-claimed-message i {
-            font-size: 3.5rem;
-            color: #f59e0b;
-            margin-bottom: 20px;
-        }
-        
-        .already-claimed-message h2 {
-            color: #f59e0b;
-            margin-bottom: 15px;
-            font-size: 1.6rem;
-        }
-        
-        footer {
-            text-align: center;
+        .btn-group {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
             margin-top: 30px;
-            color: #64748b;
-            font-size: 0.85rem;
-            width: 100%;
-            padding: 15px;
         }
         
-        /* Responsive Design */
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--primary);
+            position: relative;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-title:after {
+            content: '✨';
+            position: absolute;
+            font-size: 2rem;
+            right: 0;
+            top: -10px;
+        }
+        
+        .section-title:before {
+            content: '🚀';
+            position: absolute;
+            font-size: 2rem;
+            left: 0;
+            top: -10px;
+        }
+        
+        /* About Creator Section */
+        .creator-section {
+            background: rgba(255, 107, 157, 0.05);
+            border-radius: 30px;
+            padding: 60px;
+            margin-top: 40px;
+            border: 3px dashed var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .creator-section:before {
+            content: 'XDD';
+            position: absolute;
+            font-size: 10rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            bottom: -30px;
+            right: -30px;
+            font-family: 'Bangers', cursive;
+            transform: rotate(-15deg);
+            z-index: 0;
+        }
+        
+        .creator-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .creator-avatar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .avatar {
+            width: 250px;
+            height: 250px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(255, 107, 157, 0.4);
+            border: 5px solid var(--accent);
+        }
+        
+        .avatar-inner {
+            width: 230px;
+            height: 230px;
+            background: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        .avatar-inner i {
+            font-size: 5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .avatar-inner h3 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        
+        .creator-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .creator-info p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: var(--light);
+            line-height: 1.8;
+        }
+        
+        .creator-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .tag {
+            background: rgba(0, 212, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--secondary);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        /* Token Purpose Section */
+        .purpose-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .purpose-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 35px 30px;
+            border: 2px solid var(--border);
+            transition: all 0.4s;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .purpose-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(255, 107, 157, 0.3);
+        }
+        
+        .purpose-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .purpose-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+        
+        .purpose-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .purpose-card p {
+            color: var(--light);
+            font-size: 1.1rem;
+        }
+        
+        /* Airdrop Section */
+        .airdrop-section {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border-radius: 30px;
+            padding: 70px 50px;
+            text-align: center;
+            border: 4px solid var(--accent);
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .airdrop-banner {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--dark);
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-weight: 900;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            font-size: 1.5rem;
+            z-index: 2;
+            white-space: nowrap;
+        }
+        
+        .airdrop-section h2 {
+            font-size: 3.5rem;
+            margin: 40px 0 20px 0;
+            color: var(--accent);
+            text-shadow: 3px 3px 0 rgba(255, 107, 157, 0.5);
+        }
+        
+        .airdrop-section p {
+            font-size: 1.4rem;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            color: var(--light);
+            font-weight: 500;
+        }
+        
+        .token-minting-info {
+            background: rgba(10, 26, 45, 0.9);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+            border: 3px solid var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+        
+        .token-minting-info h4 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            font-family: 'Comic Neue', cursive;
+            text-align: center;
+        }
+        
+        .token-minting-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .token-minting-info li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+            color: var(--light);
+        }
+        
+        .token-minting-info li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .airdrop-note {
+            background: rgba(255, 209, 102, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+            border: 2px solid var(--accent);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .airdrop-note strong {
+            color: var(--accent);
+        }
+        
+        /* Community Section */
+        .community-section {
+            text-align: center;
+            padding: 60px 0;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 30px;
+            margin-top: 60px;
+        }
+        
+        .community-section h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+        
+        .telegram-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: #0088cc;
+            color: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            margin-top: 20px;
+            font-family: 'Comic Neue', cursive;
+            box-shadow: 0 10px 25px rgba(0, 136, 204, 0.4);
+        }
+        
+        .telegram-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 136, 204, 0.6);
+        }
+        
+        /* Resources Section */
+        .resources {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        .resource-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            width: 280px;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 30px rgba(255, 107, 157, 0.3);
+        }
+        
+        .resource-card:before {
+            content: '👉';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .resource-card:hover:before {
+            opacity: 1;
+        }
+        
+        .resource-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .resource-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .resource-card a {
+            display: inline-block;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 15px;
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        .resource-card a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(5, 16, 31, 0.95);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+            border-top: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer:before {
+            content: 'XDD TO THE MOON 🚀';
+            position: absolute;
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            bottom: 20px;
+            right: 20px;
+            font-family: 'Bangers', cursive;
+            transform: rotate(-10deg);
+            z-index: 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .memes {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.7;
+            z-index: 0;
+        }
+        
+        .meme-1 { top: 20%; left: 5%; animation: float 8s infinite alternate; }
+        .meme-2 { top: 10%; right: 10%; animation: float 10s infinite alternate-reverse; }
+        .meme-3 { bottom: 30%; left: 15%; animation: float 12s infinite alternate; }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content, .creator-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .meme-visual, .avatar {
+                margin: 0 auto;
+            }
+        }
+        
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
             }
             
-            .container {
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            
+            .meme-visual {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .meme-visual-inner {
+                width: 240px;
+                height: 240px;
+                font-size: 2.8rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .airdrop-section {
+                padding: 60px 20px 40px 20px;
+            }
+            
+            .airdrop-banner {
+                font-size: 1.2rem;
+                padding: 10px 25px;
+                top: 15px;
+            }
+            
+            .airdrop-section h2 {
+                font-size: 2.8rem;
+                margin-top: 60px;
+            }
+            
+            .token-minting-info {
                 padding: 20px;
-                margin: 5px;
-                border-radius: 15px;
             }
             
-            .logo {
-                font-size: 2.5rem;
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
             }
             
-            h1 {
-                font-size: 1.8rem;
+            .mobile-menu-btn {
+                display: block;
             }
             
-            .tagline {
-                font-size: 1rem;
-            }
-            
-            .description {
-                padding: 15px;
-                margin-bottom: 20px;
-            }
-            
-            .description h2 {
-                font-size: 1.3rem;
-            }
-            
-            .claim-section {
-                padding: 20px;
-                min-height: 350px;
-            }
-            
-            .claim-section h2 {
-                font-size: 1.4rem;
-            }
-            
-            input {
-                padding: 12px 12px 12px 40px;
-                font-size: 0.95rem;
-            }
-            
-            #claimButton {
-                padding: 14px;
-                font-size: 1.1rem;
-            }
-            
-            .info-box {
-                padding: 15px;
+            .nav-menu {
+                display: none;
+                width: 100%;
                 margin-top: 20px;
             }
             
-            .address-example {
-                font-size: 0.85rem;
-                padding: 6px 12px;
+            .nav-menu.active {
+                display: block;
             }
             
-            .processing-message, 
-            .success-message, 
-            .already-claimed-message {
-                padding: 25px;
+            .nav-menu ul {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .processing-message i,
-            .success-message i,
-            .already-claimed-message i {
-                font-size: 3rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.6rem;
-            }
-            
-            .logo {
-                font-size: 2.2rem;
-            }
-            
-            .container {
-                padding: 15px;
-            }
-            
-            .description {
-                padding: 12px;
-            }
-            
-            .claim-section {
-                padding: 15px;
-                min-height: 320px;
-            }
-            
-            input {
-                font-size: 0.9rem;
-                padding: 10px 10px 10px 35px;
-            }
-            
-            .wallet-icon {
-                font-size: 1rem;
-                left: 12px;
-            }
-            
-            #claimButton {
-                padding: 12px;
-                font-size: 1rem;
-            }
-            
-            .address-example {
-                font-size: 0.8rem;
-            }
-        }
-        
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 900px;
+            .creator-section, .airdrop-section {
+                padding: 40px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-coins"></i>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-grin-squint-tears"></i>
+                </div>
+                <div>
+                    <div class="logo-text">XDD TOKEN</div>
+                    <div class="logo-subtitle">The Official Dibakar Das Token</div>
+                </div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#home">🚀 Home</a></li>
+                    <li><a href="#creator">😎 Creator</a></li>
+                    <li><a href="#purpose">🎯 Purpose</a></li>
+                    <li><a href="#airdrop">🎁 Airdrop</a></li>
+                    <li><a href="#community">👥 Community</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>The FUN Meme Token on Electra Protocol!</h1>
+                    <p>Meet <span class="meme-highlight">XDD Token</span> – the hilarious, community-driven meme token created by <span class="meme-highlight">Dibakar Das</span>, a crypto enthusiast and Electra Protocol admin! No utility? No problem! This is pure fun for the crypto community! 🚀</p>
+                    <div class="token-symbol">
+                        <i class="fas fa-rocket"></i>
+                        <span>XDD TOKEN</span>
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#airdrop" class="btn btn-primary">
+                            <i class="fas fa-gift"></i> Claim FREE XDD Tokens!
+                        </a>
+                        <a href="https://t.me/DibakarDasToken" target="_blank" class="btn btn-secondary">
+                            <i class="fab fa-telegram"></i> Join Our Community
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="meme-visual">
+                        <div class="meme-visual-inner">
+                            XDD
+                            <span>Just For Fun! 😂</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h1>Claim Dibakar Das (XDD) Tokens</h1>
-            <p class="tagline">Airdrop of 100 XDD Tokens</p>
-        </header>
-        
-        <section class="description">
-            <h2>Token Claim Process</h2>
-            <p>Welcome to the XDD token claim portal. Follow these simple steps to claim your tokens:</p>
-            
-            <ul>
-                <li>Enter your OmniXEP wallet address in the form below</li>
-                <li>Ensure your address starts with 'x' (OmniXEP format)</li>
-                <li>Click the "Claim Tokens" button to initiate the process</li>
-                <li>Tokens will be sent to your submitted address</li>
-                <li>You can only claim once.</li>
-            </ul>
-            
-            <p><strong>Note:</strong> Please verify your wallet address before submitting. Claims are limited to one per user.</p>
-        </section>
-        
-        <section class="claim-section">
-            <!-- Form Container -->
-            <div class="form-container" id="formContainer">
-                <h2>Claim Your Tokens</h2>
-                <div class="form-group">
-                    <label for="walletAddress">OmniXEP Wallet Address</label>
-                    <div class="input-with-icon">
-                        <i class="fas fa-wallet wallet-icon"></i>
-                        <input type="text" id="walletAddress" placeholder="xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q">
+        </div>
+    </section>
+    
+    <!-- Creator Section -->
+    <section class="section" id="creator">
+        <div class="container">
+            <h2 class="section-title">Meet The Creator</h2>
+            <div class="creator-section">
+                <div class="creator-content">
+                    <div class="creator-avatar">
+                        <div class="avatar">
+                            <div class="avatar-inner">
+                                <i class="fas fa-crown"></i>
+                                <h3>Dibakar Das</h3>
+                                <p style="color: var(--primary); font-size: 1rem;">Crypto Enthusiast</p>
+                            </div>
+                        </div>
                     </div>
-                    <div id="validationMessage" class="validation-message">
-                        <i class="fas fa-info-circle"></i>
-                        <span>Enter a valid OmniXEP address starting with 'x'</span>
+                    <div class="creator-info">
+                        <h3>Dibakar Das - The Man Behind XDD Token</h3>
+                        <p>Hello crypto fam! I'm <span class="meme-highlight">Dibakar Das</span>, a long-term crypto enthusiast, moderator of <span class="meme-highlight">CEC Group (t.me/CEC_Group)</span>, and admin of the <span class="meme-highlight">Electra Protocol Telegram group</span>. I've been in the crypto space for years and absolutely love blockchain technology!</p>
+                        <p>I created <span class="meme-highlight">XDD Token</span> purely for fun and to bring the crypto community together. It's a meme token on my own name because why not? 😄 The token ticker XDD represents those moments when crypto makes you go "XD" from excitement!</p>
+                        <p>This is my gift to the crypto community - a fun token with no serious promises, just good vibes and laughs. Let's enjoy the ride together! 🚀</p>
+                        
+                        <div class="creator-tags">
+                            <div class="tag">Crypto Enthusiast</div>
+                            <div class="tag">Electra Protocol Admin</div>
+                            <div class="tag">CEC Group Moderator</div>
+                            <div class="tag">Blockchain Lover</div>
+                            <div class="tag">Meme Creator</div>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Token Purpose Section -->
+    <section class="section" id="purpose">
+        <div class="container">
+            <h2 class="section-title">What's XDD All About?</h2>
+            <div class="purpose-cards">
+                <div class="purpose-card">
+                    <div class="purpose-icon">
+                        <i class="fas fa-laugh-beam"></i>
+                    </div>
+                    <h3>Pure Fun & Memes</h3>
+                    <p>XDD Token is all about having fun in the crypto space! No complex whitepapers, no unrealistic promises - just good vibes, memes, and community laughs. Because crypto should be enjoyable too! 😂</p>
+                </div>
+                <div class="purpose-card">
+                    <div class="purpose-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Building</h3>
+                    <p>Bringing crypto enthusiasts together through a shared sense of humor and love for blockchain technology. XDD is about creating a positive, fun community around Electra Protocol and crypto in general.</p>
+                </div>
+                <div class="purpose-card">
+                    <div class="purpose-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Free Airdrop For All</h3>
+                    <p>Everyone gets free XDD tokens through our airdrop! It's my way of giving back to the crypto community. Claim your 100 XDD tokens and join the fun - no strings attached! 🎁</p>
+                </div>
+            </div>
+            
+            <div class="purpose-cards" style="margin-top: 40px;">
+                <div class="purpose-card">
+                    <div class="purpose-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Built on Electra Protocol</h3>
+                    <p>XDD runs on the fast, secure, and eco-friendly Electra Protocol blockchain via the OmniXEP protocol. All the tech benefits without the serious business attitude! ⚡</p>
+                </div>
+                <div class="purpose-card">
+                    <div class="purpose-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Future Possibilities</h3>
+                    <p>Starting as a pure meme token, but who knows what the future holds? Based on community demand, we might add fun utilities later. For now, let's just enjoy the ride! 🚀</p>
+                </div>
+                <div class="purpose-card">
+                    <div class="purpose-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Love for Crypto</h3>
+                    <p>Created by a true crypto enthusiast for fellow enthusiasts. XDD represents the fun side of cryptocurrency that sometimes gets lost in all the serious trading and investing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Airdrop Section -->
+    <section class="section" id="airdrop">
+        <div class="container">
+            <h2 class="section-title">FREE XDD Airdrop!</h2>
+            <div class="airdrop-section">
+                <div class="airdrop-banner">🎁 FREE TOKENS 🎁</div>
+                <h2 class="fun-text">Claim Your 100 XDD Tokens! 🎉</h2>
+                <p><strong>Limited Time Offer!</strong> I'm giving away <span class="meme-highlight">100 XDD tokens FOR FREE</span> to anyone who wants them! This is my way of spreading the fun and growing our amazing community. Don't miss out! 🚀</p>
+                
+                <div class="token-minting-info">
+                    <h4>📈 How XDD Token Minting Works:</h4>
+                    <ul>
+                        <li><strong>100 XDD per user</strong> - Each person can claim 100 XDD tokens only once</li>
+                        <li><strong>Token Minting Process</strong> - I will manually mint 100 XDD tokens to each verified wallet address</li>
+                        <li><strong>Dynamic Total Supply</strong> - Total supply depends on how many users claim the token</li>
+                        <li><strong>Future Minting</strong> - I may manually mint additional tokens for future community initiatives</li>
+                        <li><strong>Electra Protocol Wallet Required</strong> - You need an XEP wallet to receive your tokens</li>
+                    </ul>
                 </div>
                 
-                <button id="claimButton" disabled>
-                    <i class="fas fa-gift"></i>
-                    <span>Claim Tokens</span>
-                </button>
+                <a href="https://token.dibakardas.com/claim" target="_blank" class="btn btn-primary" style="font-size: 1.5rem; padding: 20px 50px;">
+                    <i class="fas fa-external-link-alt"></i> Go to Claim Portal NOW!
+                </a>
                 
-                <div class="info-box">
-                    <h3>Address Format</h3>
-                    <p>Valid OmniXEP addresses always begin with the letter <strong>'x'</strong></p>
-                    <div class="address-example">xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q</div>
-                    <p>Double-check your address to ensure successful token delivery.</p>
+                <div class="airdrop-note">
+                    <p><strong>Important:</strong> The claim process happens at <strong>token.dibakardas.com/claim</strong>. You'll need an OmniXEP wallet to receive your tokens. Don't have one? No worries - it's easy to <a href="https://www.electraprotocol.com/omnixep-wallets/" target="_blank">set up!</a> This airdrop is my gift to the crypto community - absolutely FREE! 🎁</p>
+                    <p style="margin-top: 10px;"><em>Note: This airdrop is for a limited time only. One claim per person/wallet address.</em></p>
                 </div>
             </div>
-            
-            <!-- Processing Animation -->
-            <div class="processing-container" id="processingContainer">
-                <div class="processing-message">
-                    <i class="fas fa-cog"></i>
-                    <h2>Processing Your Claim</h2>
-                    <p>Your tokens are being processed. This may take a few moments...</p>
+        </div>
+    </section>
+    
+    <!-- Community Section -->
+    <section class="section" id="community">
+        <div class="container">
+            <h2 class="section-title">Join Our Community</h2>
+            <div class="community-section">
+                <p style="font-size: 1.4rem; max-width: 800px; margin: 0 auto 40px; color: var(--light);">
+                    The XDD Token community is where the real fun happens! Join our Telegram group to connect with fellow crypto enthusiasts, share memes, get updates, and be part of this hilarious journey! 🚀
+                </p>
+                
+                <a href="https://t.me/DibakarDasToken" target="_blank" class="telegram-button">
+                    <i class="fab fa-telegram"></i> Join XDD Telegram Community
+                </a>
+                
+                <p style="margin-top: 40px; font-size: 1.2rem; color: var(--accent);">
+                    Also check out <a href="https://t.me/CEC_Group" target="_blank">CEC Group</a> and <a href="https://t.me/ElectraProtocol" target="_blank">Electra Protocol Telegram group</a> where I'm an admin/moderator!
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Resources Section -->
+    <section class="section" id="resources">
+        <div class="container">
+            <h2 class="section-title">Useful Resources</h2>
+            <div class="resources">
+                <div class="resource-card">
+                    <i class="fas fa-file-contract"></i>
+                    <h4>OmniXEP Layer</h4>
+                    <p>Learn about the OmniXEP layer that powers XDD tokens on Electra Protocol.</p>
+                    <a href="https://www.electraprotocol.com/omnixep" target="_blank">View Docs →</a>
+                </div>
+                <div class="resource-card">
+                    <i class="fas fa-cube"></i>
+                    <h4>Block Explorer</h4>
+                    <p>Track XDD transactions on the Electra Protocol blockchain explorer.</p>
+                    <a href="https://electraprotocol.network" target="_blank">Explore Blockchain →</a>
+                </div>
+                <div class="resource-card">
+                    <i class="fab fa-github"></i>
+                    <h4>GitHub</h4>
+                    <p>Check out the Electra Protocol GitHub for technical details.</p>
+                    <a href="https://github.com/ElectraProtocol" target="_blank">View Code →</a>
+                </div>
+                <div class="resource-card">
+                    <i class="fab fa-x-twitter"></i>
+                    <h4>Follow on X</h4>
+                    <p>Stay updated with the latest XDD Token news and memes on X (formerly Twitter).</p>
+                    <a href="#" target="_blank">Follow Us →</a>
                 </div>
             </div>
-            
-            <!-- Success Message -->
-            <div class="success-message" id="successMessage">
-                <i class="fas fa-check-circle"></i>
-                <h2>Tokens Claimed Successfully!</h2>
-                <p>Your XDD tokens have been claimed and will be sent to:</p>
-                <div class="address-example" id="submittedAddress"></div>
-                <p style="margin-top: 15px;">The tokens will arrive in your wallet shortly. Thank you!</p>
-            </div>
-            
-            <!-- Already Claimed Message -->
-            <div class="already-claimed-message" id="alreadyClaimedMessage">
-                <i class="fas fa-exclamation-circle"></i>
-                <h2>You've Already Claimed Tokens</h2>
-                <p>Our records show that you have already participated in the token claim.</p>
-                <p>Each wallet address can only claim tokens once.</p>
-            </div>
-        </section>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="memes meme-1">🤣</div>
+        <div class="memes meme-2">🚀</div>
+        <div class="memes meme-3">💎</div>
         
-        <footer>
-            <p>&copy;Dibakar Das (XDD) Token Claim Portal | All rights reserved.</p>
-        </footer>
-    </div>
-
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>XDD Token</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-rocket"></i> Home</a></li>
+                        <li><a href="#creator"><i class="fas fa-crown"></i> Creator</a></li>
+                        <li><a href="#purpose"><i class="fas fa-bullseye"></i> Purpose</a></li>
+                        <li><a href="#airdrop"><i class="fas fa-gift"></i> Airdrop</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://t.me/DibakarDasToken" target="_blank"><i class="fab fa-telegram"></i> XDD Telegram</a></li>
+                        <li><a href="https://t.me/CEC_Group" target="_blank"><i class="fab fa-telegram"></i> CEC Group</a></li>
+                        <li><a href="https://x.com/DibakarDasToken" target="_blank"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Technology</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://www.electraprotocol.com" target="_blank"><i class="fas fa-bolt"></i> Electra Protocol</a></li>
+                        <li><a href="https://www.electraprotocol.com/omnixep" target="_blank"><i class="fas fa-layer-group"></i> OmniXEP Protocol</a></li>
+                        <li><a href="https://electraprotocol.network" target="_blank"><i class="fas fa-cube"></i> Block Explorer</a></li>
+                        <li><a href="https://github.com/ElectraProtocol" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Claim Airdrop</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://token.dibakardas.com/claim" target="_blank"><i class="fas fa-external-link-alt"></i> Claim Portal</a></li>
+                        <li><a href="https://www.electraprotocol.com/wallets/" target="_blank"><i class="fas fa-wallet"></i> Get XEP Wallet</a></li>
+                        <li><a href="https://token.dibakardas.com/claim" target="_blank"><i class="fas fa-question-circle"></i> How to Claim</a></li>
+                        <li><a href="#"><i class="fas fa-comments"></i> FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 XDD Token - The Official Dibakar Das Meme Token. Created with ❤️ and 😂 by Dibakar Das.</p>
+                <p style="margin-top: 10px; color: var(--accent);">Disclaimer: This is a meme token for fun and community building. No financial promises or guarantees. Always do your own research in crypto!</p>
+                <!--<p style="margin-top: 10px; font-size: 0.8rem;">Total Supply: Dynamic (based on airdrop claims + manual minting for future use)</p>-->
+            </div>
+        </div>
+    </footer>
+    
     <script>
-        // ================================================
-        // ANTI-DUPLICATE CLAIM SYSTEM
-        // ================================================
-        
-        // Storage Keys
-        const STORAGE_KEYS = {
-            CLAIM_STATUS: 'xdd_claim_status',
-            WALLET_ADDRESS: 'xdd_wallet_address',
-            CLAIM_TIMESTAMP: 'xdd_claim_timestamp',
-            BROWSER_FINGERPRINT: 'xdd_browser_fingerprint'
-        };
-        
-        // DOM Elements
-        const walletInput = document.getElementById('walletAddress');
-        const validationMessage = document.getElementById('validationMessage');
-        const claimButton = document.getElementById('claimButton');
-        const formContainer = document.getElementById('formContainer');
-        const processingContainer = document.getElementById('processingContainer');
-        const successMessage = document.getElementById('successMessage');
-        const alreadyClaimedMessage = document.getElementById('alreadyClaimedMessage');
-        const submittedAddress = document.getElementById('submittedAddress');
-        
-        // Google Form Configuration (YOUR VALUES)
-        const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSfkJrQbLRqu40G7mUX7DZlAkoD4oEu78WKvFL2raUX6joMRyg/formResponse';
-        const GOOGLE_FORM_ENTRY_ID = 'entry.827078693';
-        
-        // Initialize
+        // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
-            checkExistingClaim();
-            updateValidationUI();
-            setupEventListeners();
-        });
-        
-        // ================================================
-        // ANTI-DUPLICATE: Browser Storage
-        // ================================================
-        
-        function checkExistingClaim() {
-            // Check localStorage
-            const claimStatus = localStorage.getItem(STORAGE_KEYS.CLAIM_STATUS);
-            const storedAddress = localStorage.getItem(STORAGE_KEYS.WALLET_ADDRESS);
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
             
-            // Check sessionStorage
-            const sessionClaim = sessionStorage.getItem(STORAGE_KEYS.CLAIM_STATUS);
-            
-            // Check cookies
-            const cookieClaim = getCookie(STORAGE_KEYS.CLAIM_STATUS);
-            
-            // If any storage method shows a claim, show already claimed message
-            if (claimStatus === 'claimed' || sessionClaim === 'claimed' || cookieClaim === 'claimed') {
-                showMessage('alreadyClaimed');
-                return true;
-            }
-            
-            return false;
-        }
-        
-        function markAsClaimed(address) {
-            // Store in localStorage (persists across sessions)
-            localStorage.setItem(STORAGE_KEYS.CLAIM_STATUS, 'claimed');
-            localStorage.setItem(STORAGE_KEYS.WALLET_ADDRESS, address);
-            localStorage.setItem(STORAGE_KEYS.CLAIM_TIMESTAMP, new Date().toISOString());
-            
-            // Store in sessionStorage (current session only)
-            sessionStorage.setItem(STORAGE_KEYS.CLAIM_STATUS, 'claimed');
-            
-            // Store in cookie (persists based on expiry)
-            setCookie(STORAGE_KEYS.CLAIM_STATUS, 'claimed', 365);
-            
-            // Generate and store browser fingerprint
-            const fingerprint = generateBrowserFingerprint();
-            localStorage.setItem(STORAGE_KEYS.BROWSER_FINGERPRINT, fingerprint);
-        }
-        
-        // ================================================
-        // Browser Fingerprinting
-        // ================================================
-        
-        function generateBrowserFingerprint() {
-            const components = [];
-            
-            // User Agent
-            components.push(navigator.userAgent);
-            
-            // Screen properties
-            components.push(screen.width);
-            components.push(screen.height);
-            components.push(screen.colorDepth);
-            
-            // Timezone
-            components.push(new Date().getTimezoneOffset());
-            
-            // Language
-            components.push(navigator.language);
-            
-            // Platform
-            components.push(navigator.platform);
-            
-            // Cookies enabled
-            components.push(navigator.cookieEnabled);
-            
-            // Do Not Track
-            components.push(navigator.doNotTrack);
-            
-            // Hardware concurrency
-            if (navigator.hardwareConcurrency) {
-                components.push(navigator.hardwareConcurrency);
-            }
-            
-            // Device memory
-            if (navigator.deviceMemory) {
-                components.push(navigator.deviceMemory);
-            }
-            
-            // Generate hash from components
-            const fingerprintString = components.join('|');
-            return simpleHash(fingerprintString);
-        }
-        
-        function simpleHash(str) {
-            let hash = 0;
-            for (let i = 0; i < str.length; i++) {
-                const char = str.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash;
-            }
-            return hash.toString(36);
-        }
-        
-        // ================================================
-        // HELPER FUNCTIONS
-        // ================================================
-        
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-            return null;
-        }
-        
-        function setCookie(name, value, days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            const expires = `expires=${date.toUTCString()}`;
-            document.cookie = `${name}=${value}; ${expires}; path=/; SameSite=Strict`;
-        }
-        
-        function isValidOmniXEPAddress(address) {
-            const trimmedAddress = address.trim();
-            
-            // Must start with 'x'
-            if (!trimmedAddress.startsWith('x')) {
-                return false;
-            }
-            
-            // Check length
-            if (trimmedAddress.length < 26 || trimmedAddress.length > 40) {
-                return false;
-            }
-            
-            // Check if it contains only valid characters
-            if (!/^x[0-9a-zA-Z]+$/.test(trimmedAddress)) {
-                return false;
-            }
-            
-            return true;
-        }
-        
-        function updateValidationUI() {
-            const address = walletInput.value.trim();
-            
-            if (address === '') {
-                walletInput.classList.remove('valid', 'invalid');
-                validationMessage.classList.remove('valid', 'invalid');
-                validationMessage.innerHTML = '<i class="fas fa-info-circle"></i><span>Enter a valid OmniXEP address starting with \'x\'</span>';
-                claimButton.disabled = true;
-                return;
-            }
-            
-            if (isValidOmniXEPAddress(address)) {
-                walletInput.classList.remove('invalid');
-                walletInput.classList.add('valid');
-                validationMessage.classList.remove('invalid');
-                validationMessage.classList.add('valid');
-                validationMessage.innerHTML = '<i class="fas fa-check-circle"></i><span>Valid OmniXEP address</span>';
-                claimButton.disabled = false;
-            } else {
-                walletInput.classList.remove('valid');
-                walletInput.classList.add('invalid');
-                validationMessage.classList.remove('valid');
-                validationMessage.classList.add('invalid');
-                
-                if (!address.startsWith('x')) {
-                    validationMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Address must start with \'x\'</span>';
-                } else if (address.length < 26) {
-                    validationMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Address is too short</span>';
-                } else if (address.length > 40) {
-                    validationMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Address is too long</span>';
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
                 } else {
-                    validationMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Invalid characters in address</span>';
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 }
-                
-                claimButton.disabled = true;
-            }
-        }
-        
-        function showMessage(messageType) {
-            // Hide all messages first
-            formContainer.classList.add('hidden');
-            processingContainer.classList.remove('active');
-            successMessage.classList.remove('active');
-            alreadyClaimedMessage.classList.remove('active');
+            });
             
-            // Show the requested message
-            if (messageType === 'processing') {
-                processingContainer.classList.add('active');
-            } else if (messageType === 'success') {
-                successMessage.classList.add('active');
-            } else if (messageType === 'alreadyClaimed') {
-                alreadyClaimedMessage.classList.add('active');
-            }
-        }
-        
-        function showForm() {
-            // Hide all messages and show form
-            processingContainer.classList.remove('active');
-            successMessage.classList.remove('active');
-            alreadyClaimedMessage.classList.remove('active');
-            formContainer.classList.remove('hidden');
-        }
-        
-        // ================================================
-        // FORM SUBMISSION
-        // ================================================
-        
-        async function submitClaim(address) {
-            // Check if already claimed in this session
-            if (checkExistingClaim()) {
-                return;
-            }
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('nav a, .btn[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                        mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                    }
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
             
-            // Show processing animation
-            showMessage('processing');
-            
-            // Mark as claimed in browser storage
-            markAsClaimed(address);
-            
-            // Submit to Google Form
-            await submitToGoogleForm(address);
-            
-            // Show success after delay
-            setTimeout(() => {
-                submittedAddress.textContent = address;
-                showMessage('success');
+            // Add fun floating emojis
+            function createFloatingEmoji() {
+                const emojis = ['😂', '🚀', '💎', '🎁', '🔥', '✨', '🎯', '👑', '🤣', '😎'];
+                const emoji = document.createElement('div');
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.position = 'fixed';
+                emoji.style.fontSize = Math.random() * 30 + 20 + 'px';
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.top = '100vh';
+                emoji.style.opacity = '0.7';
+                emoji.style.zIndex = '9999';
+                emoji.style.pointerEvents = 'none';
+                document.body.appendChild(emoji);
                 
-                // Reset form for potential future use
-                walletInput.value = '';
-                walletInput.classList.remove('valid');
-            }, 3000);
-        }
-        
-        async function submitToGoogleForm(address) {
-            try {
-                // Create form data with your Google Form structure
-                const formData = new FormData();
-                
-                // Add the wallet address field
-                formData.append(GOOGLE_FORM_ENTRY_ID, address);
-                
-                // Add timestamp for tracking
-                const timestamp = new Date().toISOString();
-                formData.append('entry.1234567890', timestamp);
-                
-                // Add browser fingerprint
-                const fingerprint = localStorage.getItem(STORAGE_KEYS.BROWSER_FINGERPRINT) || generateBrowserFingerprint();
-                formData.append('entry.9876543210', fingerprint);
-                
-                // Submit to Google Form
-                await fetch(GOOGLE_FORM_ACTION, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
+                // Animation
+                const animation = emoji.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 0.8 },
+                    { transform: `translateY(-${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 3000,
+                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
                 });
                 
-                // Store backup in localStorage
-                storeBackupSubmission(address, fingerprint);
-                
-                console.log('Form submitted successfully');
-                
-            } catch (error) {
-                console.log('Form submission recorded locally');
-                // Even if fetch fails, we record locally
-                const fingerprint = localStorage.getItem(STORAGE_KEYS.BROWSER_FINGERPRINT) || generateBrowserFingerprint();
-                storeBackupSubmission(address, fingerprint);
+                animation.onfinish = () => emoji.remove();
             }
-        }
-        
-        function storeBackupSubmission(address, fingerprint) {
-            try {
-                const submissions = JSON.parse(localStorage.getItem('xdd_backup_submissions') || '[]');
-                submissions.push({
-                    address: address,
-                    fingerprint: fingerprint,
-                    timestamp: new Date().toISOString(),
-                    userAgent: navigator.userAgent,
-                    platform: navigator.platform
-                });
-                localStorage.setItem('xdd_backup_submissions', JSON.stringify(submissions));
-            } catch (e) {
-                console.log('Local storage backup failed');
-            }
-        }
-        
-        // ================================================
-        // EVENT LISTENERS
-        // ================================================
-        
-        function setupEventListeners() {
-            walletInput.addEventListener('input', function() {
-                updateValidationUI();
-                
-                // Auto-validate on paste
-                if (this.value.includes('xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q')) {
-                    setTimeout(updateValidationUI, 100);
-                }
-            });
             
-            claimButton.addEventListener('click', function() {
-                const address = walletInput.value.trim();
-                if (isValidOmniXEPAddress(address)) {
-                    submitClaim(address);
-                }
-            });
-            
-            walletInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' && !claimButton.disabled) {
-                    claimButton.click();
-                }
-            });
-        }
-        
-        // ================================================
-        // TEST FUNCTION (for debugging)
-        // ================================================
-        
-        function testAddressValidation() {
-            const testAddresses = [
-                'xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q', // Your example - should be valid
-                'x1234567890123456789012345', // 25 chars - should be invalid
-                'x1234567890123456789012345678901234567890', // 40 chars - should be valid
-                'x12345678901234567890123456789012345678901', // 41 chars - should be invalid
-                'yKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q', // Starts with y - should be invalid
-                '', // Empty - should be invalid
-            ];
-            
-            console.log('Testing address validation:');
-            testAddresses.forEach(addr => {
-                console.log(`${addr}: ${isValidOmniXEPAddress(addr) ? 'VALID' : 'INVALID'}`);
-            });
-        }
-        
-        // Initial test for example address
-        setTimeout(function() {
-            // Test with your example address
-            walletInput.value = 'xKjUMuPPyQ3R99bMuzPenfdKcx2eXnyb4q';
-            updateValidationUI();
-            
-            // Clear it after showing it's valid
-            setTimeout(function() {
-                walletInput.value = '';
-                updateValidationUI();
-            }, 1000);
-        }, 500);
-        
-        console.log('XDD Token Claim Portal loaded');
-        console.log('To test validation, run: testAddressValidation()');
-        
+            // Create floating emojis occasionally
+            setInterval(createFloatingEmoji, 2000);
+        });
     </script>
 </body>
 </html>
