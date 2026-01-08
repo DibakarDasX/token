@@ -479,6 +479,107 @@
             font-family: 'Comic Neue', cursive;
         }
         
+        /* CEC Partnership Section */
+        .cec-section {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(255, 209, 102, 0.05) 100%);
+            border-radius: 30px;
+            padding: 70px 50px;
+            margin-top: 40px;
+            border: 3px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cec-section:before {
+            content: '🤝';
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            top: 20px;
+            right: 30px;
+            transform: rotate(15deg);
+            z-index: 0;
+        }
+        
+        .cec-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cec-header h3 {
+            font-size: 2.8rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .cec-header p {
+            font-size: 1.3rem;
+            color: var(--light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cec-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cec-feature {
+            background: rgba(10, 26, 45, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .cec-feature:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+        
+        .cec-feature i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .cec-feature h4 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .cec-feature p {
+            color: var(--light);
+            font-size: 1.1rem;
+        }
+        
+        .cec-bot-highlight {
+            background: rgba(255, 209, 102, 0.15);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 40px;
+            border: 2px solid var(--accent);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cec-bot-highlight h4 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
         /* Token Purpose Section */
         .purpose-cards {
             display: grid;
@@ -864,7 +965,7 @@
                 padding: 60px 0;
             }
             
-            .airdrop-section {
+            .airdrop-section, .cec-section {
                 padding: 60px 20px 40px 20px;
             }
             
@@ -877,6 +978,10 @@
             .airdrop-section h2 {
                 font-size: 2.8rem;
                 margin-top: 60px;
+            }
+            
+            .cec-header h3 {
+                font-size: 2.2rem;
             }
             
             .token-minting-info {
@@ -936,6 +1041,7 @@
                     <li><a href="#home">🚀 Home</a></li>
                     <li><a href="#creator">😎 Creator</a></li>
                     <li><a href="#purpose">🎯 Purpose</a></li>
+                    <li><a href="#cec">🤝 CEC Partnership</a></li>
                     <li><a href="#airdrop">🎁 Airdrop</a></li>
                     <li><a href="#community">👥 Community</a></li>
                 </ul>
@@ -1035,7 +1141,7 @@
                         <i class="fas fa-gift"></i>
                     </div>
                     <h3>Free Airdrop For All</h3>
-                    <p>Everyone gets free XDD tokens through our airdrop! It's my way of giving back to the crypto community. Claim your 100 XDD tokens and join the fun - no strings attached! 🎁</p>
+                    <p>Everyone gets free XDD tokens through rains on telegram and also our airdrop! It's my way of giving back to the crypto community. Claim your 100 XDD tokens and join the fun - no strings attached! 🎁</p>
                 </div>
             </div>
             
@@ -1045,7 +1151,7 @@
                         <i class="fas fa-bolt"></i>
                     </div>
                     <h3>Built on Electra Protocol</h3>
-                    <p>XDD runs on the fast, secure, and eco-friendly Electra Protocol blockchain via the OmniXEP layer. All the tech benefits without the serious business attitude! ⚡</p>
+                    <p>XDD runs on the fast, secure, and eco-friendly Electra Protocol blockchain via the OmniXEP protocol. All the tech benefits without the serious business attitude! ⚡</p>
                 </div>
                 <div class="purpose-card">
                     <div class="purpose-icon">
@@ -1060,6 +1166,50 @@
                     </div>
                     <h3>Love for Crypto</h3>
                     <p>Created by a true crypto enthusiast for fellow enthusiasts. XDD represents the fun side of cryptocurrency that sometimes gets lost in all the serious trading and investing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CEC Partnership Section -->
+    <section class="section" id="cec">
+        <div class="container">
+            <h2 class="section-title">🤝 CEC Partnership</h2>
+            <div class="cec-section">
+                <div class="cec-header">
+                    <h3>Partnership with Community Engagement Centre (CEC)</h3>
+                    <p>XDD Token has partnered with the Community Engagement Centre (CEC) Group to bring more utility and fun to our communities! This partnership enables XDD to be used within the CEC ecosystem.</p>
+                </div>
+                
+                <div class="cec-features">
+                    <div class="cec-feature">
+                        <i class="fas fa-robot"></i>
+                        <h4>Listed on CEC Bot</h4>
+                        <p>XDD Token is officially listed on the CEC Bot on Telegram. This integration allows users to interact with XDD directly through the bot interface.</p>
+                    </div>
+                    
+                    <div class="cec-feature">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h4>Tip XDD Tokens</h4>
+                        <p>Users can now tip XDD tokens to each other within both the CEC Group and our Dibakar Das Token Telegram group using simple bot commands.</p>
+                    </div>
+                    
+                    <div class="cec-feature">
+                        <i class="fas fa-cloud-rain"></i>
+                        <h4>Rain XDD Tokens</h4>
+                        <p>Community members can "rain" XDD tokens on groups, distributing them to multiple users at once. Perfect for giveaways and community events!</p>
+                    </div>
+                </div>
+                
+                <div class="cec-bot-highlight">
+                    <h4>🎯 XDD on CEC Bot Features:</h4>
+                    <p>With XDD integrated into the CEC Bot, users can check balances, send tips to friends, participate in token rains, and engage in community activities - all while having fun with their XDD tokens! This partnership brings real utility to our meme token within active Telegram communities.</p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="https://t.me/CEC_Group" target="_blank" class="btn btn-secondary" style="font-size: 1.2rem;">
+                        <i class="fab fa-telegram"></i> Join CEC Group
+                    </a>
                 </div>
             </div>
         </div>
@@ -1090,7 +1240,7 @@
                 </a>
                 
                 <div class="airdrop-note">
-                    <p><strong>Important:</strong> The claim process happens at <strong>token.dibakardas.com/claim</strong>. You'll need an OmniXEP wallet to receive your tokens. Don't have one? No worries - it's easy to <a href="https://www.electraprotocol.com/omnixep-wallets/" target="_blank">set up!</a> This airdrop is my gift to the crypto community - absolutely FREE! 🎁</p>
+                    <p><strong>Important:</strong> The claim process happens at <strong>token.dibakardas.com/claim</strong>. You'll need an Electra Protocol (XEP) wallet to receive your tokens. Don't have one? No worries - it's easy to set up! This airdrop is my gift to the crypto community - absolutely FREE! 🎁</p>
                     <p style="margin-top: 10px;"><em>Note: This airdrop is for a limited time only. One claim per person/wallet address.</em></p>
                 </div>
             </div>
@@ -1111,7 +1261,7 @@
                 </a>
                 
                 <p style="margin-top: 40px; font-size: 1.2rem; color: var(--accent);">
-                    Also check out <a href="https://t.me/CEC_Group" target="_blank">CEC Group</a> and <a href="https://t.me/ElectraProtocol" target="_blank">Electra Protocol Telegram group</a> where I'm an admin/moderator!
+                    Also check out <a href="https://t.me/DibakarDasToken" target="_blank">CEC Group</a> and <a href="https://t.me/DibakarDasToken" target="_blank">Electra Protocol telegram group</a> where I'm an admin/moderator!
                 </p>
             </div>
         </div>
@@ -1124,8 +1274,8 @@
             <div class="resources">
                 <div class="resource-card">
                     <i class="fas fa-file-contract"></i>
-                    <h4>OmniXEP Layer</h4>
-                    <p>Learn about the OmniXEP layer that powers XDD tokens on Electra Protocol.</p>
+                    <h4>OmniXEP Protocol</h4>
+                    <p>Learn about the OmniXEP protocol that powers XDD tokens on Electra Protocol.</p>
                     <a href="https://www.electraprotocol.com/omnixep" target="_blank">View Docs →</a>
                 </div>
                 <div class="resource-card">
@@ -1164,6 +1314,7 @@
                         <li><a href="#home"><i class="fas fa-rocket"></i> Home</a></li>
                         <li><a href="#creator"><i class="fas fa-crown"></i> Creator</a></li>
                         <li><a href="#purpose"><i class="fas fa-bullseye"></i> Purpose</a></li>
+                        <li><a href="#cec"><i class="fas fa-handshake"></i> CEC Partnership</a></li>
                         <li><a href="#airdrop"><i class="fas fa-gift"></i> Airdrop</a></li>
                     </ul>
                 </div>
@@ -1179,7 +1330,7 @@
                     <h4>Technology</h4>
                     <ul class="footer-links">
                         <li><a href="https://www.electraprotocol.com" target="_blank"><i class="fas fa-bolt"></i> Electra Protocol</a></li>
-                        <li><a href="https://www.electraprotocol.com/omnixep" target="_blank"><i class="fas fa-layer-group"></i> OmniXEP Protocol</a></li>
+                        <li><a href="https://www.electraprotocol.com/omnixep" target="_blank"><i class="fas fa-layer-group"></i> OmniXEP layer</a></li>
                         <li><a href="https://electraprotocol.network" target="_blank"><i class="fas fa-cube"></i> Block Explorer</a></li>
                         <li><a href="https://github.com/ElectraProtocol" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
                     </ul>
@@ -1188,7 +1339,7 @@
                     <h4>Claim Airdrop</h4>
                     <ul class="footer-links">
                         <li><a href="https://token.dibakardas.com/claim" target="_blank"><i class="fas fa-external-link-alt"></i> Claim Portal</a></li>
-                        <li><a href="https://www.electraprotocol.com/wallets/" target="_blank"><i class="fas fa-wallet"></i> Get XEP Wallet</a></li>
+                        <li><a href="https://www.electraprotocol.com/omnixep/" target="_blank"><i class="fas fa-wallet"></i> Get OmniXEP Wallet</a></li>
                         <li><a href="https://token.dibakardas.com/claim" target="_blank"><i class="fas fa-question-circle"></i> How to Claim</a></li>
                         <li><a href="#"><i class="fas fa-comments"></i> FAQ</a></li>
                     </ul>
